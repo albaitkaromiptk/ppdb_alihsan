@@ -1,0 +1,1231 @@
+<!doctype html>
+<html lang="id" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pesantren Qur'an Al-Ihsan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    .font-amiri {
+      font-family: 'Amiri', serif;
+    }
+    .font-jakarta {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .gradient-hero {
+      background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #1e3a8a 100%);
+    }
+    .pattern-islamic {
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30L30 0z' fill='%23ffffff' fill-opacity='0.03'/%3E%3C/svg%3E");
+    }
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    .btn-pulse {
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+      50% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    }
+    .fade-in {
+      animation: fadeIn 0.8s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .section-divider {
+      background: linear-gradient(90deg, transparent, #d4af37, transparent);
+      height: 2px;
+    }
+    .slideshow-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 1rem;
+    }
+    .slideshow-slide {
+      display: none;
+      width: 100%;
+      animation: fadeSlide 1s ease-in-out;
+    }
+    .slideshow-slide.active {
+      display: block;
+    }
+    .slideshow-slide img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 1rem;
+    }
+    .gallery-slide {
+      display: none;
+      width: 100%;
+      animation: fadeSlide 1s ease-in-out;
+    }
+    .gallery-slide.active {
+      display: block;
+    }
+    .gallery-slide img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 1rem;
+    }
+    @keyframes fadeSlide {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .slideshow-dots {
+      text-align: center;
+      padding: 1rem 0;
+    }
+    .slideshow-dot {
+      height: 12px;
+      width: 12px;
+      margin: 0 5px;
+      background-color: #d1d5db;
+      border-radius: 50%;
+      display: inline-block;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .slideshow-dot.active {
+      background-color: #065f46;
+      width: 30px;
+      border-radius: 6px;
+    }
+    .gallery-dot {
+      height: 12px;
+      width: 12px;
+      margin: 0 5px;
+      background-color: #d1d5db;
+      border-radius: 50%;
+      display: inline-block;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .gallery-dot.active {
+      background-color: #065f46;
+      width: 30px;
+      border-radius: 6px;
+    }
+    .slideshow-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.9);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      z-index: 10;
+    }
+    .slideshow-nav:hover {
+      background: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .slideshow-nav.prev {
+      left: 20px;
+    }
+    .slideshow-nav.next {
+      right: 20px;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full font-jakarta bg-stone-50 text-stone-800 overflow-auto">
+  <div id="app-wrapper" class="w-full h-full overflow-auto"><!-- Navigation -->
+   <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+     <div class="flex items-center gap-2"><img src="https://iili.io/f8wjmej.png" alt="Logo" class="h-12 w-auto object-contain" onerror="this.style.display='none';"> <span id="nav-school-name" class="font-amiri font-bold text-emerald-800 text-lg">Pesantren Qur'an Al-Ihsan</span>
+     </div><a id="nav-cta" href="#" class="bg-green-500 hover:bg-green-600 text-white text-sm font-semibold px-4 py-2 rounded-full transition-all flex items-center gap-2">
+      <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 24 24">
+       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+      </svg> Hubungi Kami </a>
+    </div>
+   </nav><!-- Hero Section -->
+    <div class="max-w-4xl mx-auto text-center fade-in"><!-- Decorative Element -->
+     <div class="mb-6">
+      <svg class="w-16 h-16 mx-auto text-amber-400 opacity-80" viewbox="0 0 100 100" fill="currentColor"><path d="M50 5L55 20H70L58 30L63 45L50 35L37 45L42 30L30 20H45L50 5Z" /> <path d="M50 55L55 70H70L58 80L63 95L50 85L37 95L42 80L30 70H45L50 55Z" opacity="0.6" />
+      </svg>
+     </div>
+     <p class="font-amiri text-amber-300 text-xl mb-4 tracking-wide">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيم</p>
+     <h1 id="hero-headline" class="font-amiri text-3xl md:text-5xl font-bold text-emerald-900 leading-tight mb-6">Pesantren Qur'an yang Menyiapkan Anak Menghafal Al-Qur'an, Berkarakter Kuat, dan Siap Menghadapi Masa Depan</h1>
+     <p id="hero-subheadline" class="bg-emerald-400 text-yellow-300 text-lg md:text-xl mb-4 font-medium px-6 py-3 rounded-lg inline-block">12 Juz Tahfidz Mutqin • Kurikulum Akademik Formal • Leadership • Bahasa Arab &amp; Inggris • Persiapan Perguruan Tinggi • Pulang Seminggu Sekali</p>
+     <p class="text-stone-900 font-bold text-base md:text-lg mb-8 max-w-2xl mx-auto">Bukan sekadar sekolah, Tapi sistem pendidikan lengkap untuk kesuksesan dunia dan akhirat.</p><!-- Admissions Info Box -->
+     <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-6 max-w-3xl mx-auto mb-8 shadow-xl border border-emerald-200">
+      <div class="text-center mb-4"><span class="inline-block bg-amber-400 text-emerald-900 font-bold text-sm px-4 py-2 rounded-full mb-2"> 🎓 PENDAFTARAN DIBUKA </span>
+       <h3 class="font-bold text-emerald-900 text-xl">Pendaftaran Santri Baru Telah Dibuka</h3>
+      </div>
+      <div class="grid md:grid-cols-3 gap-4 mb-6">
+       <div class="text-center p-4 bg-emerald-50 rounded-xl">
+        <div class="w-12 h-12 bg-emerald-600 rounded-full flex items-center justify-center mx-auto mb-2">
+         <svg class="w-6 h-6 text-white" viewbox="0 0 24 24" fill="currentColor"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3z" />
+         </svg>
+        </div>
+        <h4 class="font-bold text-emerald-900">SMP &amp; SMA</h4>
+        <p class="text-emerald-700 text-sm">Jenjang Tersedia</p>
+       </div>
+       <div class="text-center p-4 bg-emerald-50 rounded-xl">
+        <div class="w-12 h-12 bg-emerald-600 rounded-full flex items-center justify-center mx-auto mb-2">
+         <svg class="w-6 h-6 text-white" viewbox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
+         </svg>
+        </div>
+        <h4 class="font-bold text-emerald-900">Kuota Terbatas</h4>
+        <p class="text-emerald-700 text-sm">Per Angkatan</p>
+       </div>
+       <div class="text-center p-4 bg-emerald-50 rounded-xl">
+        <div class="w-12 h-12 bg-emerald-600 rounded-full flex items-center justify-center mx-auto mb-2">
+         <svg class="w-6 h-6 text-white" viewbox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+         </svg>
+        </div>
+        <h4 class="font-bold text-emerald-900">Seleksi</h4>
+        <p class="text-emerald-700 text-sm">Berbasis Tes</p>
+       </div>
+      </div>
+     </div><a id="hero-cta" href="#" class="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white font-bold text-lg px-8 py-4 rounded-full transition-all btn-pulse shadow-lg hover:shadow-xl">
+      <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24">
+       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+      </svg> Konsultasi Gratis via WhatsApp </a> <!-- Trust Badges -->
+     <div class="mt-12 flex flex-wrap justify-center gap-6 text-white text-sm font-medium">
+      <div class="flex items-center gap-2">
+       <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewbox="0 0 20 20">
+        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+       </svg> Terakreditasi
+      </div>
+      <div class="flex items-center gap-2">
+       <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewbox="0 0 20 20">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+       </svg> Kurikulum Nasional
+      </div>
+      <div class="flex items-center gap-2">
+       <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewbox="0 0 20 20">
+        <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0z" />
+       </svg> Asrama Lengkap
+      </div>
+     </div>
+    </div>
+   </section><!-- Pain Points Section -->
+   <section class="py-16 px-4 bg-white">
+    <div class="max-w-4xl mx-auto">
+     <div class="text-center mb-12"><span class="text-emerald-600 font-semibold text-sm uppercase tracking-wider">Beberapa Kekhawatiran Para Orang Tua</span>
+      <h2 class="font-amiri text-3xl md:text-4xl font-bold text-stone-800 mt-2">Apakah Ayah Bunda Merasakan Hal yang Sama?</h2>
+     </div>
+     <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-stone-50 p-6 rounded-2xl border-l-4 border-amber-500 card-hover">
+       <div class="flex items-start gap-4">
+        <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
+         <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M12 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+         </svg>
+        </div>
+        <div>
+         <h3 class="font-bold text-stone-800 mb-2">Akademik Bagus, Tapi Akhlak?</h3>
+         <p class="text-stone-600 text-sm">Anak berprestasi di sekolah, tetapi adab dan karakternya belum terbentuk dengan baik.</p>
+        </div>
+       </div>
+      </div>
+      <div class="bg-stone-50 p-6 rounded-2xl border-l-4 border-amber-500 card-hover">
+       <div class="flex items-start gap-4">
+        <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
+         <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+         </svg>
+        </div>
+        <div>
+         <h3 class="font-bold text-stone-800 mb-2">Religius, Tapi Masa Depan?</h3>
+         <p class="text-stone-600 text-sm">Anak rajin beribadah, tetapi tidak jelas arah pendidikan dan karirnya ke depan.</p>
+        </div>
+       </div>
+      </div>
+      <div class="bg-stone-50 p-6 rounded-2xl border-l-4 border-amber-500 card-hover">
+       <div class="flex items-start gap-4">
+        <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
+         <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+         </svg>
+        </div>
+        <div>
+         <h3 class="font-bold text-stone-800 mb-2">Khawatir Lingkungan Sekolah</h3>
+         <p class="text-stone-600 text-sm">Takut anak terpengaruh pergaulan yang tidak sehat di lingkungan sekolah biasa.</p>
+        </div>
+       </div>
+      </div>
+      <div class="bg-stone-50 p-6 rounded-2xl border-l-4 border-amber-500 card-hover">
+       <div class="flex items-start gap-4">
+        <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
+         <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+         </svg>
+        </div>
+        <div>
+         <h3 class="font-bold text-stone-800 mb-2">Ingin Tahfidz yang Serius</h3>
+         <p class="text-stone-600 text-sm">Ingin anak menghafal Al-Qur'an dengan bimbingan yang benar dan terstruktur.</p>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="mt-12 text-center">
+      <div class="inline-block bg-emerald-800 text-white px-8 py-4 rounded-2xl">
+       <p class="font-amiri text-xl md:text-2xl font-bold">"Pesantren Qur'an Al-Ihsan hadir untuk menjawab kekhawatiran ini."</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Section Divider -->
+   <div class="section-divider"></div><!-- Education System Section -->
+   <section class="py-16 px-4 bg-gradient-to-b from-stone-100 to-white">
+    <div class="max-w-5xl mx-auto">
+     <div class="text-center mb-12"><span class="text-emerald-600 font-semibold text-sm uppercase tracking-wider">Sistem Pendidikan Kami</span>
+      <h2 class="font-amiri text-3xl md:text-4xl font-bold text-stone-800 mt-2">Sistem Pendidikan Terintegrasi</h2>
+      <p class="text-stone-600 mt-3 max-w-2xl mx-auto">Lima pilar pendidikan yang saling melengkapi untuk membentuk generasi Qur'ani yang unggul</p>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"><!-- Pillar 1 -->
+      <div class="bg-white p-6 rounded-2xl shadow-lg card-hover border border-stone-100">
+       <div class="w-14 h-14 bg-emerald-100 rounded-xl flex items-center justify-center mb-4">
+        <svg class="w-8 h-8 text-emerald-700" viewbox="0 0 24 24" fill="currentColor"><path d="M12 3L1 9L5 11.18V17.18L12 21L19 17.18V11.18L21 10.09V17H23V9L12 3ZM18.82 9L12 12.72L5.18 9L12 5.28L18.82 9ZM17 15.99L12 18.72L7 15.99V12.27L12 15L17 12.27V15.99Z" />
+        </svg>
+       </div>
+       <h3 class="font-bold text-lg text-stone-800 mb-2">Tahfidz Al-Qur'an Mutqin</h3>
+       <ul class="text-stone-600 text-sm space-y-2">
+        <li class="flex items-start gap-2">
+         <svg class="w-4 h-4 text-emerald-500 mt-1 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+         </svg> Target 12 Juz dengan sistem halaqah terstruktur</li>
+        <li class="flex items-start gap-2">
+         <svg class="w-4 h-4 text-emerald-500 mt-1 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+         </svg> Evaluasi berkala dan pembinaan adab Qur'ani</li>
+       </ul>
+      </div><!-- Pillar 2 -->
+      <div class="bg-white p-6 rounded-2xl shadow-lg card-hover border border-stone-100">
+       <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+        <svg class="w-8 h-8 text-blue-700" viewbox="0 0 24 24" fill="currentColor"><path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM9 17H7V10H9V17ZM13 17H11V7H13V17ZM17 17H15V13H17V17Z" />
+        </svg>
+       </div>
+       <h3 class="font-bold text-lg text-stone-800 mb-2">Akademik Formal Unggul</h3>
+       <ul class="text-stone-600 text-sm space-y-2">
+        <li class="flex items-start gap-2">
+         <svg class="w-4 h-4 text-blue-500 mt-1 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+         </svg> Kurikulum nasional terintegrasi nilai pesantren</li>
+        <li class="flex items-start gap-2">
+         <svg class="w-4 h-4 text-blue-500 mt-1 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+         </svg> Penguasaan akademik fokus dan terukur</li>
+       </ul>
+      </div><!-- Pillar 3 -->
+      <div class="bg-white p-6 rounded-2xl shadow-lg card-hover border border-stone-100">
+       <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
+        <svg class="w-8 h-8 text-purple-700" viewbox="0 0 24 24" fill="currentColor"><path d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z" />
+        </svg>
+       </div>
+       <h3 class="font-bold text-lg text-stone-800 mb-2">Penguasaan Bahasa Arab &amp; Inggris</h3>
+       <ul class="text-stone-600 text-sm space-y-2">
+        <li class="flex items-start gap-2">
+         <svg class="w-4 h-4 text-purple-500 mt-1 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+         </svg> Hari bahasa aktif (Arabic &amp; English Day)</li>
+        <li class="flex items-start gap-2">
+         <svg class="w-4 h-4 text-purple-500 mt-1 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+         </svg> Latihan public speaking dan komunikasi</li>
+       </ul>
+      </div><!-- Pillar 4 -->
+      <div class="bg-white p-6 rounded-2xl shadow-lg card-hover border border-stone-100">
+       <div class="w-14 h-14 bg-amber-100 rounded-xl flex items-center justify-center mb-4">
+        <svg class="w-8 h-8 text-amber-700" viewbox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+        </svg>
+       </div>
+       <h3 class="font-bold text-lg text-stone-800 mb-2">Leadership &amp; Pembentukan Karakter</h3>
+       <ul class="text-stone-600 text-sm space-y-2">
+        <li class="flex items-start gap-2">
+         <svg class="w-4 h-4 text-amber-500 mt-1 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+         </svg> Tarbiyah harian dan pembinaan rutin</li>
+        <li class="flex items-start gap-2">
+         <svg class="w-4 h-4 text-amber-500 mt-1 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+         </svg> Kedisiplinan, tanggung jawab, dan kepercayaan diri</li>
+       </ul>
+      </div><!-- Pillar 5 -->
+      <div class="bg-white p-6 rounded-2xl shadow-lg card-hover border border-stone-100 md:col-span-2 lg:col-span-1">
+       <div class="w-14 h-14 bg-rose-100 rounded-xl flex items-center justify-center mb-4">
+        <svg class="w-8 h-8 text-rose-700" viewbox="0 0 24 24" fill="currentColor"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99L12 18.72 7 15.99v-3.72L12 15l5-2.73v3.72z" />
+        </svg>
+       </div>
+       <h3 class="font-bold text-lg text-stone-800 mb-2">Persiapan Masa Depan &amp; Perguruan Tinggi</h3>
+       <ul class="text-stone-600 text-sm space-y-2">
+        <li class="flex items-start gap-2">
+         <svg class="w-4 h-4 text-rose-500 mt-1 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+         </svg> Persiapan masuk perguruan tinggi favorit</li>
+        <li class="flex items-start gap-2">
+         <svg class="w-4 h-4 text-rose-500 mt-1 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+         </svg> Try-out, mentoring, dan kunjungan kampus</li>
+       </ul>
+      </div>
+     </div>
+    </div>
+   </section><!-- Program Highlights Section -->
+   <section class="py-16 px-4 bg-emerald-800 pattern-islamic">
+    <div class="max-w-5xl mx-auto">
+     <div class="text-center mb-12"><span class="text-amber-400 font-semibold text-sm uppercase tracking-wider">Program Unggulan</span>
+      <h2 class="font-amiri text-3xl md:text-4xl font-bold text-white mt-2">Program-Program Kami</h2>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6"><!-- Category 1 -->
+      <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+       <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 bg-amber-400 rounded-lg flex items-center justify-center">
+         <svg class="w-6 h-6 text-emerald-800" viewbox="0 0 24 24" fill="currentColor"><path d="M12 3L1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z" />
+         </svg>
+        </div>
+        <h3 class="font-bold text-white">Qur'an &amp; Akademik</h3>
+       </div>
+       <ul class="space-y-2">
+        <li class="flex items-center gap-2 text-emerald-100 text-sm"><span class="w-1.5 h-1.5 bg-amber-400 rounded-full"></span> 12 Juz Tahfidz Mutqin</li>
+        <li class="flex items-center gap-2 text-emerald-100 text-sm"><span class="w-1.5 h-1.5 bg-amber-400 rounded-full"></span> Bahasa Arab</li>
+        <li class="flex items-center gap-2 text-emerald-100 text-sm"><span class="w-1.5 h-1.5 bg-amber-400 rounded-full"></span> Bahasa Inggris</li>
+       </ul>
+      </div><!-- Category 2 -->
+      <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+       <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 bg-amber-400 rounded-lg flex items-center justify-center">
+         <svg class="w-6 h-6 text-emerald-800" viewbox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+         </svg>
+        </div>
+        <h3 class="font-bold text-white">Karakter &amp; Leadership</h3>
+       </div>
+       <ul class="space-y-2">
+        <li class="flex items-center gap-2 text-white text-sm"><span class="w-1.5 h-1.5 bg-amber-400 rounded-full"></span> Halaqah Tarbiyah/liqo' kamar</li>
+        <li class="flex items-center gap-2 text-white text-sm"><span class="w-1.5 h-1.5 bg-amber-400 rounded-full"></span> Pelatihan Leadership (Organisasi Santri Qur'an Al-Ihsan)</li>
+        <li class="flex items-center gap-2 text-white text-sm"><span class="w-1.5 h-1.5 bg-amber-400 rounded-full"></span> Public Speaking</li>
+       </ul>
+      </div><!-- Category 3 -->
+      <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+       <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 bg-amber-400 rounded-lg flex items-center justify-center">
+         <svg class="w-6 h-6 text-emerald-800" viewbox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
+         </svg>
+        </div>
+        <h3 class="font-bold text-white">Life Skills</h3>
+       </div>
+       <ul class="space-y-2">
+        <li class="flex items-center gap-2 text-white text-sm"><span class="w-1.5 h-1.5 bg-amber-400 rounded-full"></span> Kewirausahaan ( Caffe OSQI ) </li>
+        <li class="flex items-center gap-2 text-white text-sm"><span class="w-1.5 h-1.5 bg-amber-400 rounded-full"></span> Pramuka &amp; Bela Diri</li>
+        <li class="flex items-center gap-2 text-white text-sm"><span class="w-1.5 h-1.5 bg-amber-400 rounded-full"></span> Ekstrakurikuler Pilihan</li>
+       </ul>
+      </div><!-- Category 4 -->
+      <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+       <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 bg-amber-400 rounded-lg flex items-center justify-center">
+         <svg class="w-6 h-6 text-emerald-800" viewbox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
+         </svg>
+        </div>
+        <h3 class="font-bold text-white">Sinergi Orang Tua</h3>
+       </div>
+       <ul class="space-y-2">
+        <li class="flex items-center gap-2 text-white text-sm"><span class="w-1.5 h-1.5 bg-amber-400 rounded-full"></span> Seminar Parenting ( Untuk Para Wali Santri )</li>
+        <li class="flex items-center gap-2 text-white text-sm"><span class="w-1.5 h-1.5 bg-amber-400 rounded-full"></span> Program Pulang Mingguan</li>
+       </ul>
+      </div>
+     </div>
+     <div class="text-center mt-10"><a id="programs-cta" href="#" class="inline-flex items-center gap-3 bg-amber-400 hover:bg-amber-500 text-emerald-900 font-bold px-8 py-4 rounded-full transition-all shadow-lg hover:shadow-xl">
+       <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+       </svg> Tanya Program via WhatsApp </a>
+     </div>
+    </div>
+   </section><!-- Why Choose Us Section -->
+   <section class="py-16 px-4 bg-white">
+    <div class="max-w-4xl mx-auto">
+     <div class="text-center mb-12"><span class="text-emerald-600 font-semibold text-sm uppercase tracking-wider">Keunggulan Kami</span>
+      <h2 class="font-amiri text-3xl md:text-4xl font-bold text-stone-800 mt-2">Mengapa Orang Tua Memilih Pesantren Qur'an Al-Ihsan</h2>
+     </div>
+     <div class="grid md:grid-cols-2 gap-4">
+      <div class="flex items-start gap-4 p-5 rounded-xl bg-stone-50 hover:bg-emerald-50 transition-colors">
+       <div class="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center flex-shrink-0">
+        <svg class="w-5 h-5 text-white" fill="currentColor" viewbox="0 0 20 20">
+         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg>
+       </div>
+       <div>
+        <h3 class="font-bold text-stone-800">Fokus Kualitas Lulusan</h3>
+        <p class="text-stone-600 text-sm mt-1">Bukan sekadar kelulusan, tapi kualitas output yang terukur</p>
+       </div>
+      </div>
+      <div class="flex items-start gap-4 p-5 rounded-xl bg-stone-50 hover:bg-emerald-50 transition-colors">
+       <div class="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center flex-shrink-0">
+        <svg class="w-5 h-5 text-white" fill="currentColor" viewbox="0 0 20 20">
+         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg>
+       </div>
+       <div>
+        <h3 class="font-bold text-stone-800">Tahfidz Berkualitas</h3>
+        <p class="text-stone-600 text-sm mt-1">Hafalan Al-Qur'an dengan konsistensi dan quality control</p>
+       </div>
+      </div>
+      <div class="flex items-start gap-4 p-5 rounded-xl bg-stone-50 hover:bg-emerald-50 transition-colors">
+       <div class="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center flex-shrink-0">
+        <svg class="w-5 h-5 text-white" fill="currentColor" viewbox="0 0 20 20">
+         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg>
+       </div>
+       <div>
+        <h3 class="font-bold text-stone-800">Keseimbangan Islami &amp; Akademik</h3>
+        <p class="text-stone-600 text-sm mt-1">Nilai-nilai Islam dan prestasi akademik berjalan seiring</p>
+       </div>
+      </div>
+      <div class="flex items-start gap-4 p-5 rounded-xl bg-stone-50 hover:bg-emerald-50 transition-colors">
+       <div class="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center flex-shrink-0">
+        <svg class="w-5 h-5 text-white" fill="currentColor" viewbox="0 0 20 20">
+         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg>
+       </div>
+       <div>
+        <h3 class="font-bold text-stone-800">Lingkungan Asrama Terkontrol</h3>
+        <p class="text-stone-600 text-sm mt-1">Aman, disiplin, dan mendukung pertumbuhan anak</p>
+       </div>
+      </div>
+      <div class="flex items-start gap-4 p-5 rounded-xl bg-stone-50 hover:bg-emerald-50 transition-colors md:col-span-2">
+       <div class="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center flex-shrink-0">
+        <svg class="w-5 h-5 text-white" fill="currentColor" viewbox="0 0 20 20">
+         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg>
+       </div>
+       <div>
+        <h3 class="font-bold text-stone-800">Komunikasi Aktif dengan Orang Tua</h3>
+        <p class="text-stone-600 text-sm mt-1">Keterlibatan orang tua dalam perjalanan pendidikan anak</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Facilities Section -->
+   <section class="py-16 px-4 bg-gradient-to-b from-white to-stone-50">
+    <div class="max-w-5xl mx-auto">
+     <div class="text-center mb-12"><span class="text-emerald-600 font-semibold text-sm uppercase tracking-wider">Fasilitas Lengkap</span>
+      <h2 class="font-amiri text-3xl md:text-4xl font-bold text-stone-800 mt-2">Fasilitas Pendukung Pembelajaran</h2>
+      <p class="text-stone-600 mt-3 max-w-2xl mx-auto">Sarana dan prasarana modern untuk mendukung kegiatan belajar dan keseharian santri</p>
+     </div><!-- Slideshow Container -->
+     <div class="slideshow-container relative"><button class="slideshow-nav prev" onclick="changeSlide(-1)">
+       <svg class="w-6 h-6 text-emerald-800" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+       </svg></button>
+      <div class="slideshow-slide active"><img src="Gambar/Fas. Area Pesantren.png" alt="Fasilitas Pesantren 1" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22%3E%3Crect fill=%22%23065f46%22 width=%22800%22 height=%22500%22/%3E%3Ctext fill=%22%23ffffff%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3EFasilitas Pesantren%3C/text%3E%3C/svg%3E';">
+       <div class="text-center mt-4">
+        <h3 class="font-bold text-stone-800 text-xl mb-2">Area Lingkungan Pesantren</h3>
+        <p class="text-stone-600">Lingkungan nyaman untuk belajar dan beribadah</p>
+       </div>
+      </div>
+      <div class="slideshow-slide"><img src="Gambar/Kelas.png" alt="Fasilitas Pesantren 2" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22%3E%3Crect fill=%22%232563eb%22 width=%22800%22 height=%22500%22/%3E%3Ctext fill=%22%23ffffff%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3EFasilitas Pesantren%3C/text%3E%3C/svg%3E';">
+       <div class="text-center mt-4">
+        <h3 class="font-bold text-stone-800 text-xl mb-2">Tempat Belajar</h3>
+        <p class="text-stone-600">Ruang belajar yang kondusif dan nyaman</p>
+       </div>
+      </div>
+      <div class="slideshow-slide"><img src="Gambar/Fas. Futsal.png" alt="Fasilitas Pesantren 3" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22%3E%3Crect fill=%22%237c3aed%22 width=%22800%22 height=%22500%22/%3E%3Ctext fill=%22%23ffffff%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3EFasilitas Pesantren%3C/text%3E%3C/svg%3E';">
+       <div class="text-center mt-4">
+        <h3 class="font-bold text-stone-800 text-xl mb-2">Lapangan Futsal Indoor</h3>
+        <p class="text-stone-600">Tempat olahraga indoor setelah penatnya belajar</p>
+       </div>
+      </div>
+      <div class="slideshow-slide"><img src="Gambar/Fas. Kamar.png" alt="Fasilitas Pesantren 4" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22%3E%3Crect fill=%22%23d97706%22 width=%22800%22 height=%22500%22/%3E%3Ctext fill=%22%23ffffff%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3EFasilitas Pesantren%3C/text%3E%3C/svg%3E';">
+       <div class="text-center mt-4">
+        <h3 class="font-bold text-stone-800 text-xl mb-2">Kamar Santri</h3>
+        <p class="text-stone-600">Kamar bersih dengan kapasitas ideal</p>
+       </div>
+      </div>
+      <div class="slideshow-slide"><img src="Gambar/Fas. Kolam Renang.png" alt="Fasilitas Pesantren 5" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22%3E%3Crect fill=%22%23dc2626%22 width=%22800%22 height=%22500%22/%3E%3Ctext fill=%22%23ffffff%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3EFasilitas Pesantren%3C/text%3E%3C/svg%3E';">
+       <div class="text-center mt-4">
+        <h3 class="font-bold text-stone-800 text-xl mb-2">Kolam Renang</h3>
+        <p class="text-stone-600">Renang menjadi opsi untuk refreshing</p>
+       </div>
+      </div>
+      <div class="slideshow-slide"><img src="Gambar/Fas. Perpus.png" alt="Fasilitas Pesantren 6" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22%3E%3Crect fill=%22%2316a34a%22 width=%22800%22 height=%22500%22/%3E%3Ctext fill=%22%23ffffff%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3EFasilitas Pesantren%3C/text%3E%3C/svg%3E';">
+       <div class="text-center mt-4">
+        <h3 class="font-bold text-stone-800 text-xl mb-2">Perpustakaan</h3>
+        <p class="text-stone-600">Koleksi buku lengkap dan referensi ilmiah</p>
+       </div>
+      </div>
+      <div class="slideshow-slide"><img src="Gambar/Fas. Tempat makan.png" alt="Fasilitas Pesantren 7" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22%3E%3Crect fill=%22%234f46e5%22 width=%22800%22 height=%22500%22/%3E%3Ctext fill=%22%23ffffff%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3EFasilitas Pesantren%3C/text%3E%3C/svg%3E';">
+       <div class="text-center mt-4">
+        <h3 class="font-bold text-stone-800 text-xl mb-2">Area Makan</h3>
+        <p class="text-stone-600">Menyediakan makanan bergizi dan halal</p>
+       </div>
+      </div>
+      <div class="slideshow-slide"><img src="Gambar/Fas. Kafe.png" alt="Fasilitas Pesantren 8" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22%3E%3Crect fill=%22%230d9488%22 width=%22800%22 height=%22500%22/%3E%3Ctext fill=%22%23ffffff%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3EFasilitas Pesantren%3C/text%3E%3C/svg%3E';">
+       <div class="text-center mt-4">
+        <h3 class="font-bold text-stone-800 text-xl mb-2">Caffe Pesantren</h3>
+        <p class="text-stone-600">Menyediakan minuman kekinian dan variatif</p>
+       </div>
+      </div>
+      <div class="slideshow-slide"><img src="Gambar/Fas. Basket.png" alt="Fasilitas Pesantren 9" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22%3E%3Crect fill=%22%23059669%22 width=%22800%22 height=%22500%22/%3E%3Ctext fill=%22%23ffffff%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3EFasilitas Pesantren%3C/text%3E%3C/svg%3E';">
+       <div class="text-center mt-4">
+        <h3 class="font-bold text-stone-800 text-xl mb-2">Lapangan Olahraga</h3>
+        <p class="text-stone-600">Fasilitas olahraga lengkap untuk santri</p>
+       </div>
+      </div>
+      <div class="slideshow-slide"><img src="Gambar/Fas. Scurity.png" alt="Fasilitas Pesantren 10" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22%3E%3Crect fill=%22%23b45309%22 width=%22800%22 height=%22500%22/%3E%3Ctext fill=%22%23ffffff%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3EFasilitas Pesantren%3C/text%3E%3C/svg%3E';">
+       <div class="text-center mt-4">
+        <h3 class="font-bold text-stone-800 text-xl mb-2">Post Scurity</h3>
+        <p class="text-stone-600">Menciptkan lingkungan yang aman dan nyaman</p>
+       </div>
+      </div>
+      <div class="slideshow-slide"><img src="Gambar/Fas. Gazebo.png" alt="Fasilitas Pesantren 11" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22%3E%3Crect fill=%22%2322c55e%22 width=%22800%22 height=%22500%22/%3E%3Ctext fill=%22%23ffffff%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3EFasilitas Pesantren%3C/text%3E%3C/svg%3E';">
+       <div class="text-center mt-4">
+        <h3 class="font-bold text-stone-800 text-xl mb-2">Taman Pesantren</h3>
+        <p class="text-stone-600">Area hijau untuk refreshing santri</p>
+       </div>
+      </div>
+      </div><button class="slideshow-nav next" onclick="changeSlide(1)">
+       <svg class="w-6 h-6 text-emerald-800" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+       </svg></button>
+     </div><!-- Slideshow Dots -->
+     <div class="slideshow-dots"><span class="slideshow-dot active" onclick="currentSlide(1)"></span> <span class="slideshow-dot" onclick="currentSlide(2)"></span> <span class="slideshow-dot" onclick="currentSlide(3)"></span> <span class="slideshow-dot" onclick="currentSlide(4)"></span> <span class="slideshow-dot" onclick="currentSlide(5)"></span> <span class="slideshow-dot" onclick="currentSlide(6)"></span> <span class="slideshow-dot" onclick="currentSlide(7)"></span> <span class="slideshow-dot" onclick="currentSlide(8)"></span> <span class="slideshow-dot" onclick="currentSlide(9)"></span> <span class="slideshow-dot" onclick="currentSlide(10)"></span> <span class="slideshow-dot" onclick="currentSlide(11)"></span> <span class="slideshow-dot" onclick="currentSlide(12)"></span> <span class="slideshow-dot" onclick="currentSlide(13)"></span> <span class="slideshow-dot" onclick="currentSlide(14)"></span> <span class="slideshow-dot" onclick="currentSlide(15)"></span> <span class="slideshow-dot" onclick="currentSlide(16)"></span>
+     </div>
+    </div>
+   </section><!-- Gallery Section -->
+   <section class="py-16 px-4 bg-stone-100">
+    <div class="max-w-5xl mx-auto">
+     <div class="text-center mb-12"><span class="text-emerald-600 font-semibold text-sm uppercase tracking-wider">Galeri Kegiatan</span>
+      <h2 class="font-amiri text-3xl md:text-4xl font-bold text-stone-800 mt-2">Aktivitas Santri Sehari-hari</h2>
+     </div><!-- Gallery Slideshow Container -->
+     <div class="slideshow-container relative"><button class="slideshow-nav prev" onclick="changeGallerySlide(-1)">
+       <svg class="w-6 h-6 text-emerald-800" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+       </svg></button>
+      <div class="gallery-slide active"><img src="Gambar kegiatan/halaqoh.JPG" alt="Halaqah Tahfidz Harian" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22%3E%3Crect fill=%22%23065f46%22 width=%22800%22 height=%22500%22/%3E%3Ctext fill=%22%23ffffff%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3EHalaqah Tahfidz Harian%3C/text%3E%3C/svg%3E';">
+       <div class="text-center mt-4">
+        <h3 class="font-bold text-stone-800 text-xl mb-2">Halaqah Tahfidz Harian</h3>
+        <p class="text-stone-600">Santri menghafal Al-Qur'an dengan bimbingan ustadzah</p>
+       </div>
+      </div>
+      <div class="gallery-slide"><img src="Gambar kegiatan/Kelas.png" alt="Pembelajaran di Kelas" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22%3E%3Crect fill=%22%232563eb%22 width=%22800%22 height=%22500%22/%3E%3Ctext fill=%22%23ffffff%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3EPembelajaran di Kelas%3C/text%3E%3C/svg%3E';">
+       <div class="text-center mt-4">
+        <h3 class="font-bold text-stone-800 text-xl mb-2">Pembelajaran di Kelas</h3>
+        <p class="text-stone-600">Kegiatan belajar mengajar dengan kurikulum terintegrasi</p>
+       </div>
+      </div>
+      <div class="gallery-slide"><img src="Gambar kegiatan/publik.jpeg" alt="Latihan Public Speaking" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22%3E%3Crect fill=%22%237c3aed%22 width=%22800%22 height=%22500%22/%3E%3Ctext fill=%22%23ffffff%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3ELatihan Public Speaking%3C/text%3E%3C/svg%3E';">
+       <div class="text-center mt-4">
+        <h3 class="font-bold text-stone-800 text-xl mb-2">Latihan Public Speaking</h3>
+        <p class="text-stone-600">Melatih kemampuan berbicara dan kepercayaan diri santri didepan umum</p>
+       </div>
+      </div>
+      <div class="gallery-slide"><img src="Gambar kegiatan/masak.png" alt="Kegiatan Organisasi" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22%3E%3Crect fill=%22%23d97706%22 width=%22800%22 height=%22500%22/%3E%3Ctext fill=%22%23ffffff%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3EKegiatan Organisasi%3C/text%3E%3C/svg%3E';">
+       <div class="text-center mt-4">
+        <h3 class="font-bold text-stone-800 text-xl mb-2">Mukhoyyam Tarbawi</h3>
+        <p class="text-stone-600">Membentuk generasi muslim tangguh melalui penguatan karakter, kedisiplinan, kemandirian, dan ukhuwah</p>
+       </div>
+      </div>
+      <div class="gallery-slide"><img src="Gambar kegiatan/silat.JPG" alt="Kegiatan Olahraga" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22%3E%3Crect fill=%22%23dc2626%22 width=%22800%22 height=%22500%22/%3E%3Ctext fill=%22%23ffffff%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3EKegiatan Olahraga%3C/text%3E%3C/svg%3E';">
+       <div class="text-center mt-4">
+        <h3 class="font-bold text-stone-800 text-xl mb-2">Ekstrakurikuler Wajib</h3>
+        <p class="text-stone-600">Sarana pengembangan diri komprehensif, mencakup pembentukan karakter , kesehatan fisik , mental, spiritual, serta keterampilan bela diri untuk perlindungan diri</p>
+       </div>
+      </div>
+      <div class="gallery-slide"><img src="Gambar kegiatan/Tembak.png" alt="Pembelajaran Bahasa Arab" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22%3E%3Crect fill=%22%2316a34a%22 width=%22800%22 height=%22500%22/%3E%3Ctext fill=%22%23ffffff%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3EPembelajaran Bahasa Arab%3C/text%3E%3C/svg%3E';">
+       <div class="text-center mt-4">
+        <h3 class="font-bold text-stone-800 text-xl mb-2">Rihlah</h3>
+        <p class="text-stone-600">Sarana refreshing dari rutinitas padat, memperkuat ukhuwah antar santri dan ustadz, serta meningkatkan ilmu pengetahuan dan keimanan</p>
+       </div>
+      </div>
+      <div class="gallery-slide"><img src="Gambar kegiatan/cafqi.jpg.jpeg" alt="Kegiatan Ekstrakurikuler" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22%3E%3Crect fill=%22%234f46e5%22 width=%22800%22 height=%22500%22/%3E%3Ctext fill=%22%23ffffff%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3EKegiatan Ekstrakurikuler%3C/text%3E%3C/svg%3E';">
+       <div class="text-center mt-4">
+        <h3 class="font-bold text-stone-800 text-xl mb-2">Caffe OSQI</h3>
+        <p class="text-stone-600">Sebagai wadah pelatihan wirausaha (edukasi kewirausahaan) dan sarana pemberdayaan Organisasi Santri Qur’an Al-Ihsan</p>
+       </div>
+      </div>
+      <div class="gallery-slide"><img src="Gambar kegiatan/Motoin-257.jpg"Praktikum Sains" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22%3E%3Crect fill=%22%230d9488%22 width=%22800%22 height=%22500%22/%3E%3Ctext fill=%22%23ffffff%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3EPraktikum Sains%3C/text%3E%3C/svg%3E';">
+       <div class="text-center mt-4">
+        <h3 class="font-bold text-stone-800 text-xl mb-2">Bakti Sosial</h3>
+        <p class="text-stone-600">Menjadi santri adalah proses pembentukan karakter yang komprehensif, di mana kemandirian, kedisiplinan, dan mentalitas tangguh berpadu dengan keberkahan ilmu untuk melahirkan pribadi yang unggul secara spiritual maupun sosial</p>
+       </div>
+      </div><button class="slideshow-nav next" onclick="changeGallerySlide(1)">
+       <svg class="w-6 h-6 text-emerald-800" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+       </svg></button>
+     </div><!-- Gallery Slideshow Dots -->
+     <div class="slideshow-dots"><span class="gallery-dot active" onclick="currentGallerySlide(1)"></span> <span class="gallery-dot" onclick="currentGallerySlide(2)"></span> <span class="gallery-dot" onclick="currentGallerySlide(3)"></span> <span class="gallery-dot" onclick="currentGallerySlide(4)"></span> <span class="gallery-dot" onclick="currentGallerySlide(5)"></span> <span class="gallery-dot" onclick="currentGallerySlide(6)"></span> <span class="gallery-dot" onclick="currentGallerySlide(7)"></span> <span class="gallery-dot" onclick="currentGallerySlide(8)"></span>
+     </div>
+    </div>
+   </section><!-- Pricing Section -->
+   <section class="py-16 px-4 bg-white">
+    <div class="max-w-5xl mx-auto"><!-- Section 1: Soft Opening -->
+     <div class="text-center mb-12"><span class="text-emerald-600 font-semibold text-sm uppercase tracking-wider">Informasi Biaya</span>
+      <h2 class="font-amiri text-3xl md:text-4xl font-bold text-stone-800 mt-2 mb-3">Ringkasan Biaya Pendidikan</h2>
+      <p class="text-stone-500 text-sm max-w-xl mx-auto">Disusun transparan agar Ayah &amp; Bunda bisa mengambil keputusan dengan tenang.</p>
+     </div><!-- Section 2: What Parents Get First -->
+     <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-6 mb-10 max-w-2xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+       <div class="flex items-center gap-2 text-emerald-800">
+        <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg><span class="text-sm font-medium">Pendidikan Qur'an &amp; Dinas</span>
+       </div>
+       <div class="flex items-center gap-2 text-emerald-800">
+        <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg><span class="text-sm font-medium">Asrama &amp; pembinaan karakter</span>
+       </div>
+       <div class="flex items-center gap-2 text-emerald-800">
+        <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg><span class="text-sm font-medium">Seragam &amp; buku lengkap</span>
+       </div>
+       <div class="flex items-center gap-2 text-emerald-800">
+        <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg><span class="text-sm font-medium">Tanpa biaya tersembunyi</span>
+       </div>
+      </div>
+     </div><!-- Section 3: Pricing Tables -->
+     <div class="space-y-8 mb-10"><!-- A. Biaya Sekali (Awal Masuk) -->
+      <div class="bg-white border border-stone-200 rounded-2xl overflow-hidden">
+       <div class="bg-gradient-to-r from-emerald-700 to-emerald-600 px-6 py-4">
+        <h3 class="font-bold text-white text-lg">A. Biaya Sekali (Awal Masuk)</h3>
+       </div>
+       <div class="p-6">
+        <div class="overflow-x-auto">
+         <table class="w-full">
+          <thead>
+           <tr class="border-b border-stone-200">
+            <th class="text-left py-3 px-4 font-semibold text-stone-700">Komponen</th>
+            <th class="text-right py-3 px-4 font-semibold text-stone-700">Biaya</th>
+           </tr>
+          </thead>
+          <tbody class="divide-y divide-stone-100">
+           <tr class="hover:bg-stone-50">
+            <td class="py-3 px-4 text-stone-800">Formulir Pendaftaran</td>
+            <td class="py-3 px-4 text-right font-semibold text-stone-900">Rp 300.000</td>
+           </tr>
+           <tr class="hover:bg-stone-50">
+            <td class="py-3 px-4 text-stone-800">Uang Pangkal</td>
+            <td class="py-3 px-4 text-right font-semibold text-stone-900">Rp 20.000.000</td>
+           </tr>
+           <tr class="hover:bg-stone-50">
+            <td class="py-3 px-4 text-stone-800">Seragam Ikhwan</td>
+            <td class="py-3 px-4 text-right font-semibold text-stone-900">Rp 2.520.000</td>
+           </tr>
+           <tr class="hover:bg-stone-50">
+            <td class="py-3 px-4 text-stone-800">Seragam Akhwat</td>
+            <td class="py-3 px-4 text-right font-semibold text-stone-900">Rp 3.000.000</td>
+           </tr>
+          </tbody>
+         </table>
+        </div>
+        <p class="text-xs text-stone-500 mt-4 italic">* Uang pangkal sudah termasuk biaya gedung 3 tahun</p>
+       </div>
+      </div><!-- B. Biaya Bulanan -->
+      <div class="bg-white border border-stone-200 rounded-2xl overflow-hidden">
+       <div class="bg-gradient-to-r from-blue-700 to-blue-600 px-6 py-4">
+        <h3 class="font-bold text-white text-lg">B. Biaya Bulanan</h3>
+       </div>
+       <div class="p-6">
+        <div class="overflow-x-auto">
+         <table class="w-full">
+          <thead>
+           <tr class="border-b border-stone-200">
+            <th class="text-left py-3 px-4 font-semibold text-stone-700">Komponen</th>
+            <th class="text-right py-3 px-4 font-semibold text-stone-700">Biaya</th>
+           </tr>
+          </thead>
+          <tbody>
+           <tr class="hover:bg-stone-50">
+            <td class="py-3 px-4 text-stone-800">SPP</td>
+            <td class="py-3 px-4 text-right font-semibold text-stone-900">Rp 2.750.000 / bulan</td>
+           </tr>
+          </tbody>
+         </table>
+        </div>
+       </div>
+      </div><!-- C. Biaya Tahunan -->
+      <div class="bg-white border border-stone-200 rounded-2xl overflow-hidden">
+       <div class="bg-gradient-to-r from-amber-700 to-amber-600 px-6 py-4">
+        <h3 class="font-bold text-white text-lg">C. Biaya Tahunan</h3>
+       </div>
+       <div class="p-6">
+        <div class="overflow-x-auto">
+         <table class="w-full">
+          <thead>
+           <tr class="border-b border-stone-200">
+            <th class="text-left py-3 px-4 font-semibold text-stone-700">Komponen</th>
+            <th class="text-right py-3 px-4 font-semibold text-stone-700">Biaya</th>
+           </tr>
+          </thead>
+          <tbody class="divide-y divide-stone-100">
+           <tr class="hover:bg-stone-50">
+            <td class="py-3 px-4 text-stone-800">Biaya Kegiatan</td>
+            <td class="py-3 px-4 text-right font-semibold text-stone-900">Rp 2.000.000</td>
+           </tr>
+           <tr class="hover:bg-stone-50">
+            <td class="py-3 px-4 text-stone-800">Buku Kelas 7</td>
+            <td class="py-3 px-4 text-right font-semibold text-stone-900">Rp 1.326.000</td>
+           </tr>
+           <tr class="hover:bg-stone-50">
+            <td class="py-3 px-4 text-stone-800">Buku Kelas 10</td>
+            <td class="py-3 px-4 text-right font-semibold text-stone-900">Rp 1.445.000</td>
+           </tr>
+          </tbody>
+         </table>
+        </div>
+       </div>
+      </div>
+     </div><!-- Section 4: Attention Trigger -->
+     <div class="bg-gradient-to-br from-amber-400 to-amber-500 rounded-2xl p-8 text-center mb-10 shadow-lg">
+      <div class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full mb-3"><span class="text-2xl">🎉</span> <span class="font-bold text-emerald-900">Diskon Khusus Gelombang Terakhir</span>
+      </div>
+      <h3 class="text-4xl md:text-5xl font-bold text-white mb-2">40% OFF</h3>
+      <p class="text-emerald-900 font-medium">Segera Amankan Kuota Dengan Hubungi Admin</p>
+     </div><!-- Section 5: Final Total -->
+     <div class="mb-10">
+      <h3 class="font-amiri text-2xl md:text-3xl font-bold text-center text-stone-800 mb-8">Total Setelah Diskon</h3>
+      <div class="grid md:grid-cols-2 gap-6"><!-- AKHWAT -->
+       <div class="bg-gradient-to-br from-pink-50 to-purple-50 border-2 border-pink-200 rounded-2xl p-6">
+        <div class="flex items-center justify-center gap-2 mb-4"><span class="text-2xl">👩‍🎓</span>
+         <h4 class="font-bold text-xl text-stone-800">AKHWAT</h4>
+        </div>
+        <div class="space-y-3">
+         <div class="bg-white rounded-xl p-4 flex items-center justify-between"><span class="text-stone-700 font-medium">Kelas 7</span> <span class="font-bold text-lg text-emerald-700">Rp 21.376.000</span>
+         </div>
+         <div class="bg-white rounded-xl p-4 flex items-center justify-between"><span class="text-stone-700 font-medium">Kelas 10</span> <span class="font-bold text-lg text-emerald-700">Rp 21.495.000</span>
+         </div>
+        </div>
+       </div><!-- IKHWAN -->
+       <div class="bg-gradient-to-br from-blue-50 to-cyan-50 border-2 border-blue-200 rounded-2xl p-6">
+        <div class="flex items-center justify-center gap-2 mb-4"><span class="text-2xl">👨‍🎓</span>
+         <h4 class="font-bold text-xl text-stone-800">IKHWAN</h4>
+        </div>
+        <div class="space-y-3">
+         <div class="bg-white rounded-xl p-4 flex items-center justify-between"><span class="text-stone-700 font-medium">Kelas 7</span> <span class="font-bold text-lg text-emerald-700">Rp 20.896.000</span>
+         </div>
+         <div class="bg-white rounded-xl p-4 flex items-center justify-between"><span class="text-stone-700 font-medium">Kelas 10</span> <span class="font-bold text-lg text-emerald-700">Rp 21.015.000</span>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div><!-- Section 6: Included (Reassurance) -->
+     <div class="bg-emerald-900 rounded-2xl p-8 mb-8">
+      <h4 class="font-bold text-white text-xl text-center mb-6">Sudah Termasuk:</h4>
+      <div class="grid md:grid-cols-2 gap-4">
+       <div class="flex items-start gap-3">
+        <svg class="w-6 h-6 text-amber-400 flex-shrink-0 mt-0.5" fill="currentColor" viewbox="0 0 20 20">
+         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg><span class="text-white font-medium">Registrasi</span>
+       </div>
+       <div class="flex items-start gap-3">
+        <svg class="w-6 h-6 text-amber-400 flex-shrink-0 mt-0.5" fill="currentColor" viewbox="0 0 20 20">
+         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg><span class="text-white font-medium">Uang Pangkal (Biaya Gedung 3 Tahun)</span>
+       </div>
+       <div class="flex items-start gap-3">
+        <svg class="w-6 h-6 text-amber-400 flex-shrink-0 mt-0.5" fill="currentColor" viewbox="0 0 20 20">
+         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg><span class="text-white font-medium">Seluruh Seragam Sekolah</span>
+       </div>
+       <div class="flex items-start gap-3">
+        <svg class="w-6 h-6 text-amber-400 flex-shrink-0 mt-0.5" fill="currentColor" viewbox="0 0 20 20">
+         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg><span class="text-white font-medium">Seluruh Buku Kelas 7 / 10</span>
+       </div>
+       <div class="flex items-start gap-3">
+        <svg class="w-6 h-6 text-amber-400 flex-shrink-0 mt-0.5" fill="currentColor" viewbox="0 0 20 20">
+         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg><span class="text-white font-medium">Uang Kegiatan 1 Tahun</span>
+       </div>
+       <div class="flex items-start gap-3">
+        <svg class="w-6 h-6 text-amber-400 flex-shrink-0 mt-0.5" fill="currentColor" viewbox="0 0 20 20">
+         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg><span class="text-white font-medium">SPP Pertama (Bulan Juli)</span>
+       </div>
+      </div>
+     </div><!-- Section 7: Final CTA -->
+     <div class="text-center"><a id="pricing-cta" href="#" class="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white font-bold text-lg px-8 py-4 rounded-full transition-all btn-pulse shadow-lg hover:shadow-xl">
+       <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+       </svg> Konsultasi &amp; Pendaftaran Santri Baru </a>
+     </div>
+    </div>
+   </section><!-- Testimonials Section -->
+   <section class="py-16 px-4 bg-white">
+    <div class="max-w-4xl mx-auto">
+     <div class="text-center mb-12"><span class="text-emerald-600 font-semibold text-sm uppercase tracking-wider">Testimoni</span>
+      <h2 class="font-amiri text-3xl md:text-4xl font-bold text-stone-800 mt-2">Apa Kata Mereka?</h2>
+     </div>
+     <div class="grid md:grid-cols-2 gap-8"><!-- Testimonial 1 -->
+      <div class="bg-gradient-to-br from-stone-50 to-emerald-50 p-8 rounded-2xl relative">
+       <svg class="absolute top-4 right-4 w-12 h-12 text-emerald-200" fill="currentColor" viewbox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+       </svg>
+       <div class="flex items-center gap-4 mb-4">
+        <div class="w-14 h-14 bg-emerald-600 rounded-full flex items-center justify-center"><span class="text-white font-bold text-xl">�����‍👩‍👧</span>
+        </div>
+        <div>
+         <h4 class="font-bold text-stone-800">KH. Dr. Muslih Abdul Karim, M.A</h4>
+         <p class="text-emerald-600 text-sm">pendiri Pesantren Baitul Qur'an Indonesia</p>
+        </div>
+       </div>
+       <p class="text-stone-700 leading-relaxed italic">"Semuanya sudah mengetahui guru2 kita, anak saya disini 3 orang, abdurahman, abdul karim dan abdullah. Maka saya bersyukur terimakasih kepada pak kiyai, terimakasih kepada keluarga besar alihsan, terimakasih pada ibu2 guru bapak2 guru telah mendidik anak saya. (Ifthor keluarga besar 14 maret 2026)"</p>
+      </div><!-- Testimonial 2 -->
+      <div class="bg-gradient-to-br from-stone-50 to-amber-50 p-8 rounded-2xl relative">
+       <svg class="absolute top-4 right-4 w-12 h-12 text-amber-200" fill="currentColor" viewbox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+       </svg>
+       <div class="flex items-center gap-4 mb-4">
+        <div class="w-14 h-14 bg-amber-500 rounded-full flex items-center justify-center"><span class="text-white font-bold text-xl">������‍🎓</span>
+        </div>
+        <div>
+         <h4 class="font-bold text-stone-800">Muhammad Nabil Musyaffa Raihan</h4>
+         <p class="text-amber-600 text-sm">Santri Kelas 9 Mutqin 12 Juz</p>
+        </div>
+       </div>
+       <p class="text-stone-700 leading-relaxed italic">"Selama 3 tahun aku Di Al Ihsan, Menurutku ini adalah waktu yang begitu panjang tapi entah bagaimana waktu 3 tehun kebersamaan kami hanya terasa seperti sebulan saja.Banyak sekali pelajaran baru yang aku dapatkan di tempat ini, Teman -teman serta Ustadz  Pembina terasa begitu dekat denganku, Ini seperti tempat untuk rumah keduaku. Para Guru - guru yang sabar dalam mengajarkan ilmu nya kepada murid-muridnya, Juga lingkungan yang nyaman menjadikan tempat ini spesial untuk aku.
+
+Alasan masuk Al Ihsan? 
+Karena sekolah ini bukan hanya sekedar tepat belajar, tapi juga tempat membangun kebiasaan baik setiap hari nya.
+
+Apa yang di dapat?
+Di Al Ihsan aku mendapatkan banyak sekali ilmu, Aku juga mendapatkan kesempatan untuk menjadi seseorang yang PD tampil, Karena sekolah ini membuka peluang bagi para murid nya yang ingin tampil di depan publik (Public Speaking). Tidak hanya itu Di sini Aku juga mendapatkan dorongan untuk menjadi seorang muslim yang taat, Dimana Aku dan teman-teman ku yang lainnya di ajarkan untuk selalu Istiqomah dalam melakukan kebaikan apapun.</p>
+      </div>
+      </div><!-- Testimonial 3 -->
+      <div class="bg-gradient-to-br from-stone-50 to-emerald-50 p-8 rounded-2xl relative">
+       <svg class="absolute top-4 right-4 w-12 h-12 text-emerald-200" fill="currentColor" viewbox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+       </svg>
+       <div class="flex items-center gap-4 mb-4">
+        <div class="w-14 h-14 bg-emerald-600 rounded-full flex items-center justify-center"><span class="text-white font-bold text-xl">�����‍👩‍👧</span>
+        </div>
+        <div>
+         <h4 class="font-bold text-stone-800">Bapak Hasan Basri</h4>
+         <p class="text-emerald-600 text-sm">Orang Tua Ashalin dan wafa</p>
+        </div>
+       </div>
+       <p class="text-stone-700 leading-relaxed italic">"Saya Hasan Basri, orang tua dari Ashalina kelas 11 dan juga Wafa kelas 7. Alasan saya menyekolahkan anak saya di Al-Ihsan karena memang orientasi kami, saya dan istri, adalah bagaimana mendekatkan mereka dengan Al-Qur’an. Karena Al-Qur’an itu apabila sudah masuk ke dalam hati dan pikiran anak-anak kami, maka insya Allah itu akan membimbing mereka menempuh ujian hidup dengan sangat kuat, sukses dunia dan akhirat.
+Kemudian, Al-Ihsan ini lingkungannya juga sangat baik, konsen dalam pembinaan karakter. Di dalamnya ada asrama, ketua asrama atau mungkin wali kelas yang sangat penting bagi setiap orangnya, sehingga ditanya mau ke depannya mau seperti apa, cita-citanya mau seperti apa, apa yang dirasakan di rumah, apa yang dirasakan di sekolah, itu selalu diajak dialog seperti itu.
+Proses mentoring ini saya kira sangat bagus untuk merangsang motivasi anak, supaya anak tidak curhat hal yang salah atau kepada orang yang salah. Metode ini harus terus dipupuk dan dikembangkan di Al-Ihsan.
+Selain faktor yang lainnya, juga sangat kekeluargaan di sini. Kemudian fasilitas juga oke. Asramanya juga ruangan ber-AC. Intinya, fasilitas oke, metodologi pengajaran oke, kurikulum oke, guru-gurunya juga kompeten. Pokoknya Al-Ihsan the best."</p>
+     </div>
+    </div>
+   </section><!-- FAQ Section -->
+   <section class="py-16 px-4 bg-white">
+    <div class="max-w-3xl mx-auto">
+     <div class="text-center mb-12"><span class="text-emerald-600 font-semibold text-sm uppercase tracking-wider">FAQ</span>
+      <h2 class="font-amiri text-3xl md:text-4xl font-bold text-stone-800 mt-2">Pertanyaan yang Sering Diajukan</h2>
+     </div>
+     <div class="space-y-4" id="faq-container"><!-- FAQ Item 1 -->
+      <div class="border border-stone-200 rounded-xl overflow-hidden"><button class="faq-toggle w-full flex items-center justify-between p-5 text-left bg-stone-50 hover:bg-stone-100 transition-colors" data-faq="1"> <span class="font-bold text-stone-800">Apakah ini pesantren dengan sistem asrama penuh?</span>
+        <svg class="w-5 h-5 text-emerald-600 faq-icon transition-transform" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg></button>
+       <div class="faq-content hidden p-5 bg-white border-t border-stone-200">
+        <p class="text-stone-600">Ya, Pesantren Qur'an Al-Ihsan menerapkan sistem asrama penuh (boarding school) dengan fasilitas lengkap. Santri tinggal di asrama selama hari sekolah dan mendapatkan bimbingan 24 jam dari para ustadz dan pembina.</p>
+       </div>
+      </div><!-- FAQ Item 2 -->
+      <div class="border border-stone-200 rounded-xl overflow-hidden"><button class="faq-toggle w-full flex items-center justify-between p-5 text-left bg-stone-50 hover:bg-stone-100 transition-colors" data-faq="2"> <span class="font-bold text-stone-800">Bagaimana jika anak belum lancar membaca Al-Qur'an?</span>
+        <svg class="w-5 h-5 text-emerald-600 faq-icon transition-transform" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg></button>
+       <div class="faq-content hidden p-5 bg-white border-t border-stone-200">
+        <p class="text-stone-600">Tidak masalah! Kami memiliki program Tahsin (perbaikan bacaan) khusus untuk santri yang belum lancar membaca Al-Qur'an. Program ini akan mempersiapkan mereka sebelum masuk ke program Tahfidz, sehingga setiap santri dapat mengikuti dengan baik.</p>
+       </div>
+      </div><!-- FAQ Item 3 -->
+      <div class="border border-stone-200 rounded-xl overflow-hidden"><button class="faq-toggle w-full flex items-center justify-between p-5 text-left bg-stone-50 hover:bg-stone-100 transition-colors" data-faq="3"> <span class="font-bold text-stone-800">Apakah ada jadwal kunjungan orang tua?</span>
+        <svg class="w-5 h-5 text-emerald-600 faq-icon transition-transform" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg></button>
+       <div class="faq-content hidden p-5 bg-white border-t border-stone-200">
+        <p class="text-stone-600">Tentu! Kami memiliki program pulang mingguan (weekly home leave) yang memungkinkan santri pulang ke rumah secara berkala. Selain itu, orang tua juga dapat berkunjung ke pesantren pada hari-hari yang telah ditentukan dan berkomunikasi dengan pihak pesantren tentang perkembangan anak.</p>
+       </div>
+      </div><!-- FAQ Item 4 -->
+      <div class="border border-stone-200 rounded-xl overflow-hidden"><button class="faq-toggle w-full flex items-center justify-between p-5 text-left bg-stone-50 hover:bg-stone-100 transition-colors" data-faq="4"> <span class="font-bold text-stone-800">Bagaimana cara mendapatkan informasi biaya pendidikan?</span>
+        <svg class="w-5 h-5 text-emerald-600 faq-icon transition-transform" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg></button>
+       <div class="faq-content hidden p-5 bg-white border-t border-stone-200">
+        <p class="text-stone-600">Untuk informasi detail mengenai biaya pendidikan, silakan hubungi tim admisi kami melalui WhatsApp. Tim kami akan memberikan penjelasan lengkap tentang komponen biaya, jadwal pembayaran, serta program beasiswa yang tersedia bagi santri berprestasi.</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Final CTA Section -->
+   <section class="py-20 px-4 bg-gradient-to-br from-stone-900 to-emerald-900 pattern-islamic relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+     <svg class="w-full h-full" viewbox="0 0 100 100" preserveaspectratio="none"><pattern id="pattern" width="10" height="10" patternunits="userSpaceOnUse">
+       <circle cx="5" cy="5" r="1" fill="white" />
+      </pattern> <rect width="100" height="100" fill="url(#pattern)" />
+     </svg>
+    </div>
+    <div class="max-w-3xl mx-auto text-center relative z-10">
+     <div class="mb-8">
+      <svg class="w-20 h-20 mx-auto text-amber-400 mb-6" viewbox="0 0 100 100" fill="currentColor"><path d="M50 10L60 35H85L65 50L75 75L50 60L25 75L35 50L15 35H40L50 10Z" />
+      </svg>
+      <h2 class="font-amiri text-3xl md:text-5xl font-bold text-white leading-tight mb-4">Investasi Terbaik untuk Masa Depan Anak Anda Dimulai Hari Ini</h2>
+      <p class="text-white text-lg max-w-xl mx-auto font-medium">Jangan tunda lagi. Berikan anak Anda pendidikan yang akan membentuk mereka menjadi generasi Qur'ani yang unggul.</p>
+     </div><a id="final-cta" href="#" class="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white font-bold text-xl px-10 py-5 rounded-full transition-all btn-pulse shadow-2xl hover:shadow-3xl">
+      <svg class="w-7 h-7" fill="currentColor" viewbox="0 0 24 24">
+       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+      </svg> Hubungi Tim Pendaftaran Sekarang </a>
+     <p class="text-amber-200 text-sm mt-6 font-medium">��� Respon cepat • 💬 Konsultasi gratis • 📋 Info lengkap</p>
+    </div>
+   </section><!-- Footer -->
+   <footer class="py-8 px-4 bg-stone-900">
+    <div class="max-w-4xl mx-auto text-center">
+     <div class="flex items-center justify-center gap-2 mb-4"><img src="https://iili.io/f8wjmej.png" alt="Logo" class="h-10 w-auto object-contain" onerror="this.style.display='none';"> <span id="footer-school-name" class="font-amiri font-bold text-white text-xl">Pesantren Qur'an Al-Ihsan</span>
+     </div>
+     <p class="text-stone-400 text-sm mb-4">Membentuk Generasi Qur'ani yang Unggul Dunia dan Akhirat</p>
+     <div class="text-stone-100 text-xs">
+      © 2026 Pesantren Qur'an Al-Ihsan. All rights reserved.
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+    // Default configuration
+    const defaultConfig = {
+      hero_headline: "Pesantren Qur'an yang Menyiapkan Anak Menghafal Al-Qur'an, Berkarakter Kuat, dan Siap Menghadapi Masa Depan Dengan Perpulangan Seminggu Sekali",
+      hero_subheadline: "12 Juz Tahfidz Mutqin • Kurikulum Akademik Formal • Leadership • Bahasa Arab & Inggris • Persiapan Perguruan Tinggi",
+      whatsapp_number: "6287886437676",
+      school_name: "Pesantren Qur'an Al-Ihsan",
+      primary_color: "#065f46",
+      secondary_color: "#d4af37",
+      background_color: "#fafaf9",
+      text_color: "#1c1917",
+      accent_color: "#22c55e"
+    };
+
+    // Update WhatsApp links
+    function updateWhatsAppLinks(number) {
+      const message = encodeURIComponent("Assalamu'alaikum, saya ingin bertanya tentang pendaftaran santri baru di Pesantren Qur'an Al-Ihsan.");
+      const waLink = `https://wa.me/${number}?text=${message}`;
+      
+      const ctaElements = [
+        'nav-cta', 'hero-cta', 'programs-cta', 'pricing-cta', 'final-cta'
+      ];
+      
+      ctaElements.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.href = waLink;
+          el.target = '_blank';
+          el.rel = 'noopener noreferrer';
+        }
+      });
+    }
+
+    // Slideshow functionality
+    let slideIndex = 1;
+    let slideTimer;
+    
+    // Gallery slideshow functionality
+    let gallerySlideIndex = 1;
+    let gallerySlideTimer;
+
+    function changeSlide(n) {
+      clearTimeout(slideTimer);
+      showSlides(slideIndex += n);
+      autoSlide();
+    }
+
+    function currentSlide(n) {
+      clearTimeout(slideTimer);
+      showSlides(slideIndex = n);
+      autoSlide();
+    }
+
+    function showSlides(n) {
+      const slides = document.querySelectorAll('.slideshow-slide');
+      const dots = document.querySelectorAll('.slideshow-dot');
+      
+      if (n > slides.length) { slideIndex = 1; }
+      if (n < 1) { slideIndex = slides.length; }
+      
+      slides.forEach(slide => slide.classList.remove('active'));
+      dots.forEach(dot => dot.classList.remove('active'));
+      
+      if (slides[slideIndex - 1]) {
+        slides[slideIndex - 1].classList.add('active');
+      }
+      if (dots[slideIndex - 1]) {
+        dots[slideIndex - 1].classList.add('active');
+      }
+    }
+
+    function autoSlide() {
+      slideTimer = setTimeout(() => {
+        slideIndex++;
+        showSlides(slideIndex);
+        autoSlide();
+      }, 5000);
+    }
+
+    function changeGallerySlide(n) {
+      clearTimeout(gallerySlideTimer);
+      showGallerySlides(gallerySlideIndex += n);
+      autoGallerySlide();
+    }
+
+    function currentGallerySlide(n) {
+      clearTimeout(gallerySlideTimer);
+      showGallerySlides(gallerySlideIndex = n);
+      autoGallerySlide();
+    }
+
+    function showGallerySlides(n) {
+      const slides = document.querySelectorAll('.gallery-slide');
+      const dots = document.querySelectorAll('.gallery-dot');
+      
+      if (n > slides.length) { gallerySlideIndex = 1; }
+      if (n < 1) { gallerySlideIndex = slides.length; }
+      
+      slides.forEach(slide => slide.classList.remove('active'));
+      dots.forEach(dot => dot.classList.remove('active'));
+      
+      if (slides[gallerySlideIndex - 1]) {
+        slides[gallerySlideIndex - 1].classList.add('active');
+      }
+      if (dots[gallerySlideIndex - 1]) {
+        dots[gallerySlideIndex - 1].classList.add('active');
+      }
+    }
+
+    function autoGallerySlide() {
+      gallerySlideTimer = setTimeout(() => {
+        gallerySlideIndex++;
+        showGallerySlides(gallerySlideIndex);
+        autoGallerySlide();
+      }, 5000);
+    }
+
+    // FAQ Toggle functionality
+    function initFAQ() {
+      const faqToggles = document.querySelectorAll('.faq-toggle');
+      faqToggles.forEach(toggle => {
+        toggle.addEventListener('click', () => {
+          const content = toggle.nextElementSibling;
+          const icon = toggle.querySelector('.faq-icon');
+          
+          // Close all other FAQs
+          faqToggles.forEach(otherToggle => {
+            if (otherToggle !== toggle) {
+              const otherContent = otherToggle.nextElementSibling;
+              const otherIcon = otherToggle.querySelector('.faq-icon');
+              otherContent.classList.add('hidden');
+              otherIcon.style.transform = 'rotate(0deg)';
+            }
+          });
+          
+          // Toggle current FAQ
+          content.classList.toggle('hidden');
+          if (content.classList.contains('hidden')) {
+            icon.style.transform = 'rotate(0deg)';
+          } else {
+            icon.style.transform = 'rotate(180deg)';
+          }
+        });
+      });
+    }
+
+    // Initialize Element SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange: async (config) => {
+          // Update hero headline
+          const heroHeadline = document.getElementById('hero-headline');
+          if (heroHeadline) {
+            heroHeadline.textContent = config.hero_headline || defaultConfig.hero_headline;
+          }
+          
+          // Update hero subheadline
+          const heroSubheadline = document.getElementById('hero-subheadline');
+          if (heroSubheadline) {
+            heroSubheadline.textContent = config.hero_subheadline || defaultConfig.hero_subheadline;
+          }
+          
+          // Update school name in nav
+          const navSchoolName = document.getElementById('nav-school-name');
+          if (navSchoolName) {
+            navSchoolName.textContent = (config.school_name || defaultConfig.school_name).split(' ').pop();
+          }
+          
+          // Update school name in footer
+          const footerSchoolName = document.getElementById('footer-school-name');
+          if (footerSchoolName) {
+            footerSchoolName.textContent = config.school_name || defaultConfig.school_name;
+          }
+          
+          // Update WhatsApp links
+          updateWhatsAppLinks(config.whatsapp_number || defaultConfig.whatsapp_number);
+        },
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.background_color || defaultConfig.background_color,
+              set: (value) => {
+                config.background_color = value;
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            },
+            {
+              get: () => config.primary_color || defaultConfig.primary_color,
+              set: (value) => {
+                config.primary_color = value;
+                window.elementSdk.setConfig({ primary_color: value });
+              }
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (value) => {
+                config.text_color = value;
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            },
+            {
+              get: () => config.secondary_color || defaultConfig.secondary_color,
+              set: (value) => {
+                config.secondary_color = value;
+                window.elementSdk.setConfig({ secondary_color: value });
+              }
+            },
+            {
+              get: () => config.accent_color || defaultConfig.accent_color,
+              set: (value) => {
+                config.accent_color = value;
+                window.elementSdk.setConfig({ accent_color: value });
+              }
+            }
+          ],
+          borderables: [],
+          fontEditable: undefined,
+          fontSizeable: undefined
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ["hero_headline", config.hero_headline || defaultConfig.hero_headline],
+          ["hero_subheadline", config.hero_subheadline || defaultConfig.hero_subheadline],
+          ["whatsapp_number", config.whatsapp_number || defaultConfig.whatsapp_number],
+          ["school_name", config.school_name || defaultConfig.school_name]
+        ])
+      });
+    }
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', () => {
+      initFAQ();
+      updateWhatsAppLinks(defaultConfig.whatsapp_number);
+      showSlides(slideIndex);
+      autoSlide();
+      showGallerySlides(gallerySlideIndex);
+      autoGallerySlide();
+    });
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9bfe919c90ec7b65',t:'MTc2ODc0NDMwNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
