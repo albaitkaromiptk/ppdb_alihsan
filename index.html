@@ -1418,85 +1418,95 @@ Di Al Ihsan aku mendapatkan banyak sekali ilmu, Aku juga mendapatkan kesempatan 
 </div>
 
 <script>
-  // ⚠️ JANGAN LUPA GANTI URL DI BAWAH INI DENGAN URL WEB APP DEPLOYMENT GOOGLE SCRIPT-MU
-  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyKO_OthrX56bNtzB9xOvTwdfSlHmECFn44GGTeWPeyWhGqD-xgqAnnX5aECKy6eyPL/exec";
+ // ====== PASTE DI DALAM TAG SCRIPT PALING BAWAH ======
 
-  const modal = document.getElementById('regModal');
-  const openModalBtn = document.getElementById('openModalBtn');
-  const closeModalBtn = document.getElementById('closeModalBtn');
-  const fileInput = document.getElementById('buktiBayar');
-  const submitBtn = document.getElementById('submitBtn');
-  const form = document.getElementById('pendaftaranForm');
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfybyEjz_DOy_ZODEy44NTRcXnXlvwfQMMuT9jeVvPL9_ITnBcraLg-f-RTDWnIpfykYlhEQ/exec"; //
 
-  openModalBtn.addEventListener('click', () => { modal.classList.remove('hidden'); document.body.style.overflow = 'hidden'; });
-  closeModalBtn.addEventListener('click', () => { modal.classList.add('hidden'); document.body.style.overflow = ''; });
-  modal.addEventListener('click', (e) => { if (e.target === modal) { modal.classList.add('hidden'); document.body.style.overflow = ''; } });
+const modal = document.getElementById('regModal'); //
+const openModalBtn = document.getElementById('openModalBtn'); //
+const closeModalBtn = document.getElementById('closeModalBtn'); //
+const fileInput = document.getElementById('buktiBayar'); //
+const submitBtn = document.getElementById('submitBtn'); //
+const form = document.getElementById('pendaftaranForm'); //
 
-  fileInput.addEventListener('change', () => {
-    if (fileInput.files && fileInput.files.length > 0) {
-      submitBtn.removeAttribute('disabled');
-      submitBtn.className = "w-full py-3 rounded-xl font-bold text-white transition-all duration-300 bg-emerald-600 hover:bg-emerald-700 cursor-pointer text-center shadow-md";
-      submitBtn.innerHTML = '🚀 Kirim Pendaftaran Sekarang';
-    } else {
-      submitBtn.setAttribute('disabled', 'true');
-      submitBtn.className = "w-full py-3 rounded-xl font-bold text-white transition-all duration-300 bg-stone-300 cursor-not-allowed text-center shadow-md";
-      submitBtn.innerHTML = '🔒 Upload Bukti untuk Mengaktifkan Tombol Daftar';
-    }
-  });
+// Logika buka tutup modal (tetap pertahankan yang lama)
+openModalBtn.addEventListener('click', () => { modal.classList.remove('hidden'); document.body.style.overflow = 'hidden'; }); //
+closeModalBtn.addEventListener('click', () => { modal.classList.add('hidden'); document.body.style.overflow = ''; }); //
+modal.addEventListener('click', (e) => { if (e.target === modal) { modal.classList.add('hidden'); document.body.style.overflow = ''; } }); //
 
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    submitBtn.setAttribute('disabled', 'true');
-    submitBtn.innerHTML = '⏳ Sedang Mengirim Data... Mohon Tunggu';
-    
-    var file = fileInput.files[0];
-    var reader = new FileReader();
-    
-    reader.onloadend = function() {
-      var payload = {
-        nama: document.getElementById('nama').value,
-        status: document.getElementById('status').value,
-        jk: document.getElementById('jk').value,
-        tglLahir: document.getElementById('tglLahir').value,
-        ortu: document.getElementById('ortu').value,
-        wa: document.getElementById('wa').value,
-        alamat: document.getElementById('alamat').value,
-        asalSekolah: document.getElementById('asalSekolah').value,
-        jenjang: document.getElementById('jenjang').value,
-        buktiBayar: reader.result,
-        buktiBayarNama: file.name
-      };
-      
-      fetch(WEB_APP_URL, {
-        method: 'POST',
-        body: JSON.stringify(payload)
-      })
-      .then(response => response.json())
-      .then(data => {
-        if(data.result === "success") {
-          alert("Alhamdulillah! 🎉 Pendaftaran berhasil dikirim dan data sudah masuk ke sistem database pondok. Mohon ditunggu ya Ayah Bunda 🙏🏻");
-          form.reset();
-          modal.classList.add('hidden');
-          document.body.style.overflow = '';
-        } else {
-          alert("Waduh, terjadi gangguan sistem: " + data.error);
-        }
-      })
-      .catch(error => {
-        alert("Koneksi gagal atau data gagal dikirim. Silakan coba lagi.");
-        console.error(error);
-      })
-      .finally(() => {
-        submitBtn.setAttribute('disabled', 'true');
-        submitBtn.className = "w-full py-3 rounded-xl font-bold text-white transition-all duration-300 bg-stone-300 cursor-not-allowed text-center shadow-md";
-        submitBtn.innerHTML = '🔒 Upload Bukti untuk Mengaktifkan Tombol Daftar';
-      });
-    };
+// KUNCI UTAMA: Logika Kirim Form & Baca Gambar konversi ke Base64
+form.addEventListener('submit', function (e) {
+    e.preventDefault(); 
+
+    // Ubah tampilan tombol saat loading
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = "⏳ Sedang Mengirim Data... Mohon Tunggu"; //
+
+    const file = fileInput.files[0];
     
     if (file) {
-      reader.readAsDataURL(file);
+        const reader = new FileReader();
+        
+        // Fungsi ini akan berjalan OTOMATIS setelah file selesai dikonversi ke Base64
+        reader.onload = function (event) {
+            const base64String = event.target.result.split(',')[1]; 
+            
+            // Susun data yang diambil dari input form website kamu
+            const formData = {
+                nama: document.getElementById('nama').value, //
+                status: document.getElementById('status')?.value || '', 
+                jk: document.getElementById('jk')?.value || '',
+                tglLahir: document.getElementById('tglLahir')?.value || '',
+                ortu: document.getElementById('ortu')?.value || '',
+                wa: document.getElementById('wa')?.value || '',
+                alamat: document.getElementById('alamat')?.value || '',
+                asalSekolah: document.getElementById('asalSekolah')?.value || '',
+                jenjang: document.getElementById('jenjang')?.value || '',
+                
+                // Data gambar yang akan dibaca Google Apps Script
+                image64: base64String,
+                imageName: file.name,
+                mimeType: file.type
+            };
+
+            // Jalankan fungsi pengiriman data
+            kirimKeGoogleSheets(formData);
+        };
+        
+        // Mulai proses pembacaan file gambar
+        reader.readAsDataURL(file);
+    } else {
+        alert('Mohon upload bukti pendaftaran terlebih dahulu!');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = "Hubungi Tim Pendaftaran Sekarang"; //
     }
-  });
+});
+
+// Fungsi untuk menembak data ke Google Apps Script Web App
+function kirimKeGoogleSheets(formData) {
+    fetch(WEB_APP_URL, { //
+        method: 'POST',
+        body: JSON.stringify(formData)
+    })
+    .then(res => res.json())
+    .then(response => {
+        if (response.result === 'success') {
+            alert('Pendaftaran berhasil! Data & file bukti transfer sudah tersimpan.');
+            form.reset();
+            modal.classList.add('hidden'); // Tutup modal otomatis setelah berhasil
+            document.body.style.overflow = ''; //
+        } else {
+            alert('Gagal menyimpan ke sistem Google: ' + response.error);
+        }
+    })
+    .catch(err => {
+        alert('Koneksi gagal atau data gagal dikirim. Silakan coba lagi.'); //
+    })
+    .finally(() => {
+        // Kembalikan tombol ke keadaan semula setelah proses selesai/gagal
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = "Hubungi Tim Pendaftaran Sekarang"; //
+    });
+}
 </script>
 </html>
