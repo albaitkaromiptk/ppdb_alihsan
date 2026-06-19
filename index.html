@@ -1418,7 +1418,6 @@ Di Al Ihsan aku mendapatkan banyak sekali ilmu, Aku juga mendapatkan kesempatan 
 </div>
 
 <script>
- // ====== PASTE DI DALAM TAG SCRIPT PALING BAWAH ======
 
 const WEB_APP_URL = "https://script.google.com/macros/s/AKfybyEjz_DOy_ZODEy44NTRcXnXlvwfQMMuT9jeVvPL9_ITnBcraLg-f-RTDWnIpfykYlhEQ/exec"; //
 
@@ -1481,7 +1480,6 @@ form.addEventListener('submit', function (e) {
         submitBtn.innerHTML = "Hubungi Tim Pendaftaran Sekarang"; //
     }
 });
-
 // Fungsi untuk menembak data ke Google Apps Script Web App
 function kirimKeGoogleSheets(formData) {
     fetch(WEB_APP_URL, { //
@@ -1491,7 +1489,7 @@ function kirimKeGoogleSheets(formData) {
     .then(res => res.json())
     .then(response => {
         if (response.result === 'success') {
-            alert('Pendaftaran berhasil! Data & file bukti transfer sudah tersimpan.');
+            alert('Alhamdulillah! 🎉 Pendaftaran berhasil dikirim dan data sudah masuk ke sistem database pondok. Mohon ditunggu ya Ayah Bunda 🙏🏻');
             form.reset();
             modal.classList.add('hidden'); // Tutup modal otomatis setelah berhasil
             document.body.style.overflow = ''; //
