@@ -1418,7 +1418,7 @@ Di Al Ihsan aku mendapatkan banyak sekali ilmu, Aku juga mendapatkan kesempatan 
 </div>
 
 <script>
-
+// ====== PASTE DI DALAM TAG SCRIPT PALING BAWAH ======
 const WEB_APP_URL = "https://script.google.com/macros/s/AKfybyEjz_DOy_ZODEy44NTRcXnXlvwfQMMuT9jeVvPL9_ITnBcraLg-f-RTDWnIpfykYlhEQ/exec"; //
 
 const modal = document.getElementById('regModal'); //
@@ -1480,6 +1480,7 @@ form.addEventListener('submit', function (e) {
         submitBtn.innerHTML = "Hubungi Tim Pendaftaran Sekarang"; //
     }
 });
+
 // Fungsi untuk menembak data ke Google Apps Script Web App
 function kirimKeGoogleSheets(formData) {
     fetch(WEB_APP_URL, { //
@@ -1505,6 +1506,5 @@ function kirimKeGoogleSheets(formData) {
         submitBtn.disabled = false;
         submitBtn.innerHTML = "Hubungi Tim Pendaftaran Sekarang"; //
     });
-}
 </script>
 </html>
