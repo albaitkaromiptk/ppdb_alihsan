@@ -1309,7 +1309,6 @@ Di Al Ihsan aku mendapatkan banyak sekali ilmu, Aku juga mendapatkan kesempatan 
     });
   </script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9bfe919c90ec7b65',t:'MTc2ODc0NDMwNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
-<!-- 1. TOMBOL MELAYANG (FLOATING CTA) -->
 <div class="fixed bottom-6 right-6 z-40">
   <button id="openModalBtn" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 px-6 rounded-full shadow-2xl flex items-center gap-2 transition-all duration-300 transform hover:scale-105 animate-bounce">
     <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -1318,13 +1317,14 @@ Di Al Ihsan aku mendapatkan banyak sekali ilmu, Aku juga mendapatkan kesempatan 
     Daftar Sekarang
   </button>
 </div>
+
 <div id="regModal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
   <div class="bg-white w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col relative">
     
     <div class="bg-emerald-600 text-white p-4 flex justify-between items-center flex-shrink-0">
       <div>
         <h3 class="font-bold text-lg">Formulir Pendaftaran</h3>
-        <p class="text-xs text-emerald-100">PPDB Pesantren Qur'an Al-Ihsan</p>
+        <p class="text-xs text-emerald-100">PPDB Pesantren Baitul Qur'an Indonesia</p>
       </div>
       <button id="closeModalBtn" class="text-white hover:text-stone-200 font-bold text-2xl p-2">&times;</button>
     </div>
@@ -1391,7 +1391,7 @@ Di Al Ihsan aku mendapatkan banyak sekali ilmu, Aku juga mendapatkan kesempatan 
       </div>
 
       <div class="bg-amber-50 border border-amber-200 p-4 rounded-xl text-xs text-amber-900 space-y-1.5">
-        <p class="font-bold text-sm text-amber-800">💳 Informasi Biaya Formulir :</p>
+        <p class="font-bold text-sm text-amber-800">💳 Informasi Biaya Formulir & Pendaftaran:</p>
         <p>Silakan transfer sebesar <span class="font-bold text-emerald-700">Rp 300.000,-</span> ke rekening berikut:</p>
         <div class="bg-white p-2 rounded border border-amber-300 font-mono text-sm my-1 text-center">
           <p class="font-bold">Bank Syariah Indonesia (BSI)</p>
@@ -1418,93 +1418,85 @@ Di Al Ihsan aku mendapatkan banyak sekali ilmu, Aku juga mendapatkan kesempatan 
 </div>
 
 <script>
-// ====== PASTE DI DALAM TAG SCRIPT PALING BAWAH ======
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfybyEjz_DOy_ZODEy44NTRcXnXlvwfQMMuT9jeVvPL9_ITnBcraLg-f-RTDWnIpfykYlhEQ/exec"; //
+  // ⚠️ JANGAN LUPA GANTI URL DI BAWAH INI DENGAN URL WEB APP DEPLOYMENT GOOGLE SCRIPT-MU
+  const WEB_APP_URL = "PASTE_URL_APPLICATIONS_SCRIPT_KAMU_DISINI";
 
-const modal = document.getElementById('regModal'); //
-const openModalBtn = document.getElementById('openModalBtn'); //
-const closeModalBtn = document.getElementById('closeModalBtn'); //
-const fileInput = document.getElementById('buktiBayar'); //
-const submitBtn = document.getElementById('submitBtn'); //
-const form = document.getElementById('pendaftaranForm'); //
+  const modal = document.getElementById('regModal');
+  const openModalBtn = document.getElementById('openModalBtn');
+  const closeModalBtn = document.getElementById('closeModalBtn');
+  const fileInput = document.getElementById('buktiBayar');
+  const submitBtn = document.getElementById('submitBtn');
+  const form = document.getElementById('pendaftaranForm');
 
-// Logika buka tutup modal (tetap pertahankan yang lama)
-openModalBtn.addEventListener('click', () => { modal.classList.remove('hidden'); document.body.style.overflow = 'hidden'; }); //
-closeModalBtn.addEventListener('click', () => { modal.classList.add('hidden'); document.body.style.overflow = ''; }); //
-modal.addEventListener('click', (e) => { if (e.target === modal) { modal.classList.add('hidden'); document.body.style.overflow = ''; } }); //
+  openModalBtn.addEventListener('click', () => { modal.classList.remove('hidden'); document.body.style.overflow = 'hidden'; });
+  closeModalBtn.addEventListener('click', () => { modal.classList.add('hidden'); document.body.style.overflow = ''; });
+  modal.addEventListener('click', (e) => { if (e.target === modal) { modal.classList.add('hidden'); document.body.style.overflow = ''; } });
 
-// KUNCI UTAMA: Logika Kirim Form & Baca Gambar konversi ke Base64
-form.addEventListener('submit', function (e) {
-    e.preventDefault(); 
+  fileInput.addEventListener('change', () => {
+    if (fileInput.files && fileInput.files.length > 0) {
+      submitBtn.removeAttribute('disabled');
+      submitBtn.className = "w-full py-3 rounded-xl font-bold text-white transition-all duration-300 bg-emerald-600 hover:bg-emerald-700 cursor-pointer text-center shadow-md";
+      submitBtn.innerHTML = '🚀 Kirim Pendaftaran Sekarang';
+    } else {
+      submitBtn.setAttribute('disabled', 'true');
+      submitBtn.className = "w-full py-3 rounded-xl font-bold text-white transition-all duration-300 bg-stone-300 cursor-not-allowed text-center shadow-md";
+      submitBtn.innerHTML = '🔒 Upload Bukti untuk Mengaktifkan Tombol Daftar';
+    }
+  });
 
-    // Ubah tampilan tombol saat loading
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = "⏳ Sedang Mengirim Data... Mohon Tunggu"; //
-
-    const file = fileInput.files[0];
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    submitBtn.setAttribute('disabled', 'true');
+    submitBtn.innerHTML = '⏳ Sedang Mengirim Data... Mohon Tunggu';
+    
+    var file = fileInput.files[0];
+    var reader = new FileReader();
+    
+    reader.onloadend = function() {
+      var payload = {
+        nama: document.getElementById('nama').value,
+        status: document.getElementById('status').value,
+        jk: document.getElementById('jk').value,
+        tglLahir: document.getElementById('tglLahir').value,
+        ortu: document.getElementById('ortu').value,
+        wa: document.getElementById('wa').value,
+        alamat: document.getElementById('alamat').value,
+        asalSekolah: document.getElementById('asalSekolah').value,
+        jenjang: document.getElementById('jenjang').value,
+        buktiBayar: reader.result,
+        buktiBayarNama: file.name
+      };
+      
+      fetch(WEB_APP_URL, {
+        method: 'POST',
+        body: JSON.stringify(payload)
+      })
+      .then(response => response.json())
+      .then(data => {
+        if(data.result === "success") {
+          alert("Alhamdulillah! 🎉 Pendaftaran berhasil dikirim dan data sudah masuk ke sistem database pondok. Mohon ditunggu ya Ayah Bunda 🙏🏻");
+          form.reset();
+          modal.classList.add('hidden');
+          document.body.style.overflow = '';
+        } else {
+          alert("Waduh, terjadi gangguan sistem: " + data.error);
+        }
+      })
+      .catch(error => {
+        alert("Koneksi gagal atau data gagal dikirim. Silakan coba lagi.");
+        console.error(error);
+      })
+      .finally(() => {
+        submitBtn.setAttribute('disabled', 'true');
+        submitBtn.className = "w-full py-3 rounded-xl font-bold text-white transition-all duration-300 bg-stone-300 cursor-not-allowed text-center shadow-md";
+        submitBtn.innerHTML = '🔒 Upload Bukti untuk Mengaktifkan Tombol Daftar';
+      });
+    };
     
     if (file) {
-        const reader = new FileReader();
-        
-        // Fungsi ini akan berjalan OTOMATIS setelah file selesai dikonversi ke Base64
-        reader.onload = function (event) {
-            const base64String = event.target.result.split(',')[1]; 
-            
-            // Susun data yang diambil dari input form website kamu
-            const formData = {
-                nama: document.getElementById('nama').value, //
-                status: document.getElementById('status')?.value || '', 
-                jk: document.getElementById('jk')?.value || '',
-                tglLahir: document.getElementById('tglLahir')?.value || '',
-                ortu: document.getElementById('ortu')?.value || '',
-                wa: document.getElementById('wa')?.value || '',
-                alamat: document.getElementById('alamat')?.value || '',
-                asalSekolah: document.getElementById('asalSekolah')?.value || '',
-                jenjang: document.getElementById('jenjang')?.value || '',
-                
-                // Data gambar yang akan dibaca Google Apps Script
-                image64: base64String,
-                imageName: file.name,
-                mimeType: file.type
-            };
-
-            // Jalankan fungsi pengiriman data
-            kirimKeGoogleSheets(formData);
-        };
-        
-        // Mulai proses pembacaan file gambar
-        reader.readAsDataURL(file);
-    } else {
-        alert('Mohon upload bukti pendaftaran terlebih dahulu!');
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = "Hubungi Tim Pendaftaran Sekarang"; //
+      reader.readAsDataURL(file);
     }
-});
-
-// Fungsi untuk menembak data ke Google Apps Script Web App
-function kirimKeGoogleSheets(formData) {
-    fetch(WEB_APP_URL, { //
-        method: 'POST',
-        body: JSON.stringify(formData)
-    })
-    .then(res => res.json())
-    .then(response => {
-        if (response.result === 'success') {
-            alert('Alhamdulillah! 🎉 Pendaftaran berhasil dikirim dan data sudah masuk ke sistem database pondok. Mohon ditunggu ya Ayah Bunda 🙏🏻');
-            form.reset();
-            modal.classList.add('hidden'); // Tutup modal otomatis setelah berhasil
-            document.body.style.overflow = ''; //
-        } else {
-            alert('Gagal menyimpan ke sistem Google: ' + response.error);
-        }
-    })
-    .catch(err => {
-        alert('Koneksi gagal atau data gagal dikirim. Silakan coba lagi.'); //
-    })
-    .finally(() => {
-        // Kembalikan tombol ke keadaan semula setelah proses selesai/gagal
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = "Hubungi Tim Pendaftaran Sekarang"; //
-    });
+  });
 </script>
 </html>
